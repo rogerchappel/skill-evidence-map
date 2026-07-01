@@ -23,6 +23,19 @@ node dist/cli.js check test/fixtures/good-skill
 
 The tool is local-first and read-only. It does not install skills, call LLMs, push branches, or write outside the requested `--out` path. Treat generated maps as review evidence, not a guarantee of skill quality.
 
+## Verification
+
+Run the local release gate before opening a PR:
+
+```bash
+npm test
+npm run release:check
+```
+
+`release:check` runs the build, tests, typecheck, smoke scan, validation script,
+and package dry-run so evidence-map changes are checked against both fixtures and
+package contents.
+
 ## Limitations
 
 Evidence detection is deterministic keyword and file based. It catches missing release-readiness signals but does not judge whether instructions are clear, truthful, or complete.
